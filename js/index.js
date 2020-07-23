@@ -15,6 +15,15 @@ function makeAsyncPostRequest(path, queryObject) {
 		);
 	});
 }
+function validateEmail(emailField) {
+	var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+	if (reg.test(emailField) == false) {
+		return false;
+	}
+
+	return true;
+}
 
 async function getOTP() {
 	userName = document.getElementById('user-name').value;
@@ -24,6 +33,12 @@ async function getOTP() {
 	if (userName == '' || userEmail == '' || message == '') {
 		document.getElementById('server-message').innerHTML =
 			'Please fill all details..';
+		document.getElementById('server-message').style.display = 'block';
+		return;
+	}
+
+	if (!validateEmail(userEmail)) {
+		document.getElementById('server-message').innerHTML = 'Email not valid';
 		document.getElementById('server-message').style.display = 'block';
 		return;
 	}
