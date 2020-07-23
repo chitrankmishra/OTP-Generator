@@ -26,6 +26,8 @@ function validateEmail(emailField) {
 }
 
 async function getOTP() {
+	document.getElementById('server-message').innerHTML = '';
+	document.getElementById('server-message').style.display = 'none';
 	userName = document.getElementById('user-name').value;
 	userEmail = document.getElementById('user-email').value;
 	message = document.getElementById('user-message').value;
@@ -54,6 +56,7 @@ async function getOTP() {
 }
 
 async function checkOTP() {
+	document.getElementById('server-message').innerHTML = '';
 	document.getElementById('server-message').style.display = 'none';
 	otp = document.getElementById('otp').value;
 	userName = document.getElementById('user-name').value;
