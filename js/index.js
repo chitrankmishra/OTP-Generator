@@ -17,8 +17,18 @@ function makeAsyncPostRequest(path, queryObject) {
 }
 
 async function getOTP() {
+	userName = document.getElementById('user-name').value;
+	userEmail = document.getElementById('user-email').value;
+	message = document.getElementById('user-message').value;
+
+	if (userName == '' || userEmail == '' || message == '') {
+		document.getElementById('server-message').innerHTML =
+			'Please fill all details..';
+		document.getElementById('server-message').style.display = 'block';
+		return;
+	}
 	queryObj = {
-		UserEmail: document.getElementById('user-email').value,
+		UserEmail: userEmail,
 	};
 	response = await makeAsyncPostRequest('/getOTP/', queryObj);
 	OTPsession = response.result['SessionID'];
