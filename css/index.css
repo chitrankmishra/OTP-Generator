@@ -1,0 +1,10 @@
+.OTP-div {
+}
+.OTP-div-element {
+	padding: 10px 0px 10px 0px;
+}
+
+#checkOTP,
+#OTProw {
+	display: none;
+}
