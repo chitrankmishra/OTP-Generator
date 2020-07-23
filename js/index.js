@@ -1,4 +1,4 @@
-var api_url = 'http://127.0.0.1:5000';
+var api_url = 'https://chitrank0614-all-in-one.herokuapp.com';
 OTPsession = -1;
 
 function makeAsyncPostRequest(path, queryObject) {
@@ -29,6 +29,7 @@ async function getOTP() {
 }
 
 async function checkOTP() {
+	document.getElementById('server-message').style.display = 'none';
 	otp = document.getElementById('otp').value;
 	userName = document.getElementById('user-name').value;
 	userEmail = document.getElementById('user-email').value;
@@ -41,5 +42,12 @@ async function checkOTP() {
 		SessionID: OTPsession,
 	};
 	response = await makeAsyncPostRequest('/checkOTP/', queryObj);
+	if (response['result'] == 'OTP Matched. Message Sent') {
+		document.getElementById('server-message').innerHTML = 'Message Sent';
+		document.getElementById('server-message').style.display = 'block';
+	} else {
+		document.getElementById('server-message').innerHTML = 'Wrong OTP';
+		document.getElementById('server-message').style.display = 'block';
+	}
 	console.log(response);
 }
